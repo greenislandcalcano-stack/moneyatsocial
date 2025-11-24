@@ -5,85 +5,273 @@
   <title>Get Paid to Use Social Media</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
-    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background:#f7f7fb; color:#222; }
-    .container { max-width: 900px; margin: 0 auto; padding: 20px; }
-    h1, h2 { color:#3b2b8f; }
-    .hero { text-align:center; padding:40px 20px; }
-    .btn {
-      display:inline-block; padding:14px 28px; margin:16px 0;
-      background:#ff3b7b; color:#fff; text-decoration:none;
-      border-radius:6px; font-weight:bold;
+    :root {
+      --bg: #0b0b1a;
+      --card: #181828;
+      --accent: #ff3b7b;
+      --accent-soft: #ff8fb3;
+      --text-main: #f8f8ff;
+      --text-muted: #b3b3d9;
     }
-    .section { background:#fff; padding:24px 20px; margin:16px 0; border-radius:10px; }
-    ul { padding-left:20px; }
-    small { color:#666; }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #2a2a5a 0, #050510 55%, #020208 100%);
+      color: var(--text-main);
+    }
+
+    .page {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 24px 16px 48px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    header h1 {
+      margin: 8px 0;
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      letter-spacing: 0.03em;
+    }
+
+    header p {
+      margin: 0;
+      color: var(--text-muted);
+      font-size: 0.98rem;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 12px;
+      border-radius: 999px;
+      background: rgba(255, 59, 123, 0.12);
+      color: var(--accent-soft);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .badge span {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #00e58a;
+      box-shadow: 0 0 8px #00e58a;
+    }
+
+    .hero-card {
+      margin: 24px 0 32px;
+      background: radial-gradient(circle at top left, #32326b 0, #111123 40%, #050513 100%);
+      border-radius: 18px;
+      padding: 16px 16px 24px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.75);
+      border: 1px solid rgba(255,255,255,0.04);
+    }
+
+    .video-wrapper {
+      position: relative;
+      border-radius: 14px;
+      overflow: hidden;
+      background: #000;
+      aspect-ratio: 16 / 9;
+      margin-bottom: 16px;
+    }
+
+    .video-wrapper video,
+    .video-wrapper iframe {
+      width: 100%;
+      height: 100%;
+      display: block;
+      border: 0;
+    }
+
+    .video-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+    }
+
+    .hint {
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-width: 220px;
+      padding: 13px 26px;
+      margin: 10px auto 0;
+      border-radius: 999px;
+      border: none;
+      background: linear-gradient(135deg, var(--accent), #ff6aa1);
+      color: #fff;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+      box-shadow: 0 14px 35px rgba(255, 59, 123, 0.4);
+      cursor: pointer;
+      transition: transform 0.1s ease-out, box-shadow 0.15s ease-out;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 18px 45px rgba(255, 59, 123, 0.5);
+    }
+
+    .btn-primary span {
+      font-size: 1.2rem;
+    }
+
+    .sections {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      gap: 18px;
+    }
+
+    @media (max-width: 800px) {
+      .sections {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: 16px;
+      padding: 18px 18px 20px;
+      border: 1px solid rgba(255,255,255,0.04);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.75);
+    }
+
+    .card h2 {
+      margin-top: 0;
+      font-size: 1.1rem;
+    }
+
+    .card ul {
+      margin: 10px 0 0;
+      padding-left: 20px;
+      color: var(--text-muted);
+      font-size: 0.93rem;
+    }
+
+    .card li + li {
+      margin-top: 6px;
+    }
+
+    .pill {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.03);
+      color: var(--text-muted);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      margin-bottom: 2px;
+    }
+
+    footer {
+      margin-top: 28px;
+      text-align: center;
+      font-size: 0.78rem;
+      color: #737399;
+    }
+
+    footer a {
+      color: var(--accent-soft);
+      text-decoration: none;
+    }
   </style>
 </head>
 <body>
-  <div class="container">
-
-    <section class="hero">
+  <main class="page">
+    <header>
+      <div class="badge">
+        <span></span>
+        New way to earn from social media
+      </div>
       <h1>Get Paid to Use Social Media</h1>
       <p>Discover how people are earning extra income doing simple tasks on Facebook, Twitter and YouTube — using only their phone.</p>
-      <a class="btn" href="https://tinyurl.com/MoneyATSocial" target="_blank">
-        Show Me How It Works
-      </a>
-      <br><small>No experience needed. Works in most countries.</small>
-    </section>
+    </header>
 
-    <section class="section">
-      <h2>Inside You’ll Discover:</h2>
-      <ul>
-        <li>How to find real social media jobs you can do from home</li>
-        <li>Step-by-step guidance for complete beginners</li>
-        <li>How to turn simple tasks into daily online income</li>
-        <li>Which platforms pay best: Facebook, Twitter or YouTube</li>
-        <li>How to avoid scams and focus on legit opportunities only</li>
-      </ul>
-      <a class="btn" href="https://tinyurl.com/MoneyATSocial" target="_blank">
-        Start Now for Instant Access
-      </a>
-    </section>
+    <section class="hero-card">
+      <div class="video-wrapper">
+        <!-- OPTION 1: self-hosted video (replace src with your file path inside the repo) -->
+        <video
+          src="video/main.mp4"
+          controls
+          playsinline
+          preload="metadata"
+          poster="images/video-poster.jpg">
+        </video>
 
-    <section class="section">
-      <h2>Is This Right for You?</h2>
-      <p>This is perfect if you:</p>
-      <ul>
-        <li>Want a flexible side hustle you can do from home</li>
-        <li>Already spend time on social media and want to get paid for it</li>
-        <li>Don’t have technical skills or previous experience</li>
-      </ul>
-      <p>It’s not for you if you’re looking to get rich overnight without doing any work.</p>
-    </section>
+        <!--
+        OPTION 2: YouTube embed instead of the <video> above.
+        Replace the whole <video> element with this iframe and put your YouTube ID:
 
-    <section class="section">
-      <h2>How It Works</h2>
-      <ol>
-        <li>Click the button below and watch the short presentation.</li>
-        <li>Follow the steps to get started with social media jobs.</li>
-        <li>Start applying for tasks and get paid for your time online.</li>
-      </ol>
-      <a class="btn" href="https://tinyurl.com/MoneyATSocial" target="_blank">
-        Watch the Free Presentation
+        <iframe
+          src="https://www.youtube.com/embed/YOUR_VIDEO_ID?rel=0"
+          title="Get Paid to Use Social Media"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen>
+        </iframe>
+        -->
+      </div>
+
+      <p class="hint">Tap play to watch the short video, then click the button below to see how to start.</p>
+
+      <a class="btn-primary" href="https://tinyurl.com/MoneyATSocial" target="_blank" rel="noopener">
+        Show Me How It Works <span>➜</span>
       </a>
     </section>
 
-    <section class="section">
-      <h2>FAQs</h2>
-      <p><strong>Do I need experience?</strong><br>
-      No, the training is designed for beginners.</p>
+    <section class="sections">
+      <article class="card">
+        <span class="pill">Inside you’ll discover</span>
+        <h2>What you’ll learn in this training</h2>
+        <ul>
+          <li>How to find real social media jobs you can do from home.</li>
+          <li>Step-by-step guidance designed for total beginners.</li>
+          <li>How to turn simple online tasks into daily income.</li>
+          <li>Which platforms pay best: Facebook, Twitter or YouTube.</li>
+          <li>How to avoid scams and focus on legit opportunities only.</li>
+        </ul>
+      </article>
 
-      <p><strong>Do I need a big following?</strong><br>
-      No, these are client tasks, not influencer jobs, so no followers are required.</p>
-
-      <p><strong>How fast can I start?</strong><br>
-      You can begin today right after you complete the sign up.</p>
-
-      <a class="btn" href="https://tinyurl.com/MoneyATSocial" target="_blank">
-        Yes, I Want to Get Paid to Use Social Media
-      </a>
+      <article class="card">
+        <span class="pill">Is this for you?</span>
+        <h2>Perfect if you want…</h2>
+        <ul>
+          <li>A flexible side hustle you can do from home.</li>
+          <li>To get paid for time you already spend on social media.</li>
+          <li>Something that doesn’t require tech skills or experience.</li>
+          <li>A realistic way to earn extra income, not “get rich overnight”.</li>
+        </ul>
+      </article>
     </section>
 
-  </div>
+    <footer>
+      No income results are guaranteed. This page promotes a third-party training program.
+      Always do your own research. <br />
+      <a href="https://tinyurl.com/MoneyATSocial" target="_blank" rel="noopener">Start the training here →</a>
+    </footer>
+  </main>
 </body>
 </html>
