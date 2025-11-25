@@ -46,6 +46,8 @@
       margin: 0;
       color: var(--text-muted);
       font-size: 0.98rem;
+      max-width: 640px;
+      margin-inline: auto;
     }
 
     .badge {
@@ -93,15 +95,35 @@
       height: 100%;
       display: block;
       border: 0;
+      object-fit: cover;
     }
 
     .video-overlay {
       position: absolute;
       inset: 0;
       display: flex;
-      align-items: center;
-      justify-content: center;
+      align-items: flex-end;
+      justify-content: flex-start;
       pointer-events: none;
+      padding: 14px;
+      background: linear-gradient(to top, rgba(0,0,0,0.55), transparent 50%);
+    }
+
+    .overlay-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(0,0,0,0.75);
+      color: #fdfdfd;
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .overlay-label span {
+      font-size: 1rem;
     }
 
     .hint {
@@ -128,6 +150,7 @@
       box-shadow: 0 14px 35px rgba(255, 59, 123, 0.4);
       cursor: pointer;
       transition: transform 0.1s ease-out, box-shadow 0.15s ease-out;
+      text-align: center;
     }
 
     .btn-primary:hover {
@@ -160,7 +183,7 @@
     }
 
     .card h2 {
-      margin-top: 0;
+      margin-top: 4px;
       font-size: 1.1rem;
     }
 
@@ -213,29 +236,26 @@
 
     <section class="hero-card">
       <div class="video-wrapper">
-        <!-- OPTION 1: self-hosted video (replace src with your file path inside the repo) -->
+        <!-- Self-hosted hero video -->
         <video
           src="video/lady-desk.mp4"
-          controls
+          autoplay
+          muted
+          loop
           playsinline
           preload="metadata"
           poster="images/video-poster.jpg">
         </video>
 
-        <!--
-        OPTION 2: YouTube embed instead of the <video> above.
-        Replace the whole <video> element with this iframe and put your YouTube ID:
-
-        <iframe
-          src="https://www.youtube.com/embed/YOUR_VIDEO_ID?rel=0"
-          title="Get Paid to Use Social Media"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen>
-        </iframe>
-        -->
+        <div class="video-overlay">
+          <div class="overlay-label">
+            <span>▶</span>
+            Short video: how it works
+          </div>
+        </div>
       </div>
 
-      <p class="hint">Tap play to watch the short video, then click the button below to see how to start.</p>
+      <p class="hint">Watch this quick video, then tap the button below to see how to get started today.</p>
 
       <a class="btn-primary" href="https://tinyurl.com/MoneyATSocial" target="_blank" rel="noopener">
         Show Me How It Works <span>➜</span>
